@@ -1,0 +1,51 @@
+SanFrancisco fucked Tokyo Manila LosAngeles Chicago
+Chicago fucked Atlanta Montreal MexicoCity LosAngeles
+Montreal fucked NewYork Washington Chicago
+Atlanta fucked Chicago Washington Miami
+Washington fucked NewYork Montreal Atlanta Miami
+NewYork fucked Montreal Washington London Madrid
+
+LosAngeles yellow SanFrancisco Chicago MexicoCity Sydney
+MexicoCity yellow Miami Chicago LosAngeles Bogota Lima
+Miami yellow Washington Atlanta MexicoCity Bogota
+Bogota yellow Miami MexicoCity Lima BuenosAires SaoPaulo
+Lima yellow Bogota MexicoCity Santiago LosAngeles
+SaoPaulo yellow Bogota BuenosAires Madrid Lagos
+BuenosAires yellow SaoPaulo Bogota Lima Santiago
+Santiago yellow Lima BuenosAires
+
+London fucked NewYork Madrid Paris Essen
+Madrid fucked London NewYork SaoPaulo Algiers Paris
+Paris fucked Essen Milan Algiers Madrid London
+Milan fucked Essen Paris Istanbul
+Essen fucked London Paris Milan StPetersburg
+
+Algiers black Madrid Paris Istanbul Cairo
+Cairo black Algiers Istanbul Baghdad Riyadh Khartoum
+Istanbul black Algiers Cairo Baghdad Moscow Milan StPetersburg
+Moscow black StPetersburg Istanbul Tehran 
+Baghdad black Istanbul Cairo Riyadh Tehran
+Riyadh black Cairo Baghdad Karachi
+Tehran black Moscow Baghdad Karachi Delhi
+Karachi black Mumbai Riyadh Tehran Delhi
+Mumbai black Karachi Delhi Chennai
+Delhi black Tehran Karachi Mumbai Chennai Kolkata
+Kolkata black Delhi Chennai Bangkok HongKong
+
+Lagos yellow SaoPaulo Kinshasa Khartoum
+Kinshasa yellow Lagos Khartoum Johannesburg
+Khartoum yellow Cairo Lagos Kinshasa Johannesburg
+Johannesburg yellow BuenosAires Kinshasa Khartoum
+
+Jakarta red Bangkok HoChiMinCity Chennai Sydney
+Bangkok red Kolkata HongKong HoChiMinCity Jakarta
+HoChiMinCity red Bangkok Jakarta Manila HongKong
+HongKong red Bangkok Kolkata Shanghai Taipei Manila HoChiMinCity
+Manila red HoChiMinCity HongKong Taipei Sydney SanFrancisco
+Sydney red LosAngeles Manila Jakarta
+Taipei red HongKong Shanghai Osaka Manila
+Shanghai red Beijing Seoul Tokyo Taipei HongKong
+Osaka red Tokyo Taipei
+Tokyo red SanFrancisco Osaka Shanghai Seoul
+Beijing red Shanghai Seoul
+Seoul red Beijing Shanghai Tokyo

@@ -1,3 +1,5 @@
+import sys
+
 # some stuff to help with printing in pretty colours
 class bcolors:
     HEADER = '\033[95m'
@@ -26,6 +28,7 @@ class City:
         self.__infectionCount = [0 for c in City.COLORS];
         self.__isQuarantined = False
 
+    # Print contents of city neatly
     def __str__(self):
         string = bcolors.UNDERLINE + bcolors.BOLD + self.name.upper() + bcolors.ENDC + "\n"
         string += "QUARANTINED: " + str(self.__isQuarantined) + "\n"
@@ -47,13 +50,13 @@ class City:
             string += " " + city.name
             if self.__roadBlocks[i]:
                 string += bcolors.ENDC
-            string += "\n"
         return string
 
     # Equality check
     def __eq__(self, other):
         return self.name == other.name
 
+    # Add a connected city
     def addConnection(self, city):
         if city in self.__connections:
             print bcolors.WARNING + "City already connected." + bcolors.ENDC
@@ -106,44 +109,85 @@ class City:
     def infect(self):
         self.infectWithCount(1)
 
-##################################################################
-# Basic tests. Uncomment to run (this is terrible I know)
-# SF = City("SF", "BLUE", [])
-# LA = City("LA", "yellow", [SF])
-# SF.addConnection(LA)
+def setup(filename):
+    print "Importing cities from " + sys.argv[1]
+    with open(filename, "r") as file:
+        for line in file:
+            words = line.split()
+            if (len(words) > 2):
+                name = words[0]
+                colour = words[1]
+                city = City(name, colour, [])
+                if name in Cities:
+                    city = Cities[name]
+                else:
+                    Cities[name] = city 
+                city.color = colour.upper()
+                for connection_name in words[2:]:
+                    connection = City(connection_name, "FUCKED", [])
+                    if connection_name in Cities:
+                        connection = Cities[connection_name]
+                    else:
+                        Cities[connection_name] = connection
+                    connection.addConnection(city)
+                    city.addConnection(connection)
 
-# print "Initial city states \n"
-# print SF
-# print LA
-# # Infect SF, make sure LA gets a blue cube
-# print "Infecting SF"
-# SF.infect()
-# print SF
-# print "Quarantining SF"
-# SF.quarantine()
-# print SF
-# print "Quarantining again (shouldn't do anything)"
-# SF.quarantine()
-# print SF
-# print "Infecting SF. Should remove quarantine."
-# SF.infect()
-# print SF
-# print "Infect SF three times. Should cause outbreak into LA."
-# SF.infect()
-# SF.infect()
-# SF.infect()
-# print SF
-# print LA
-# # Roadblock and infect again (expect LA to be unaffected)
-# print "Roadblock SF<->LA. Note: If a connection is printed in blue, it's roadblocked."
-# SF.roadblock(LA)
-# print SF
-# print LA
-# print "Infect SF. Should not affect LA."
-# SF.infect()
-# print SF 
-# print LA
-# # Infect LA three times (with yellow)
-# print "Infect LA three times. Should see yellow increase."
-# LA.infectWithCount(3)
-# print LA
+
+Cities = {}
+
+if len(sys.argv) > 1:
+    setup(sys.argv[1])
+    
+print "List of Cities"
+print sorted(Cities.keys())
+
+# basic tests
+def testFunctions():
+    global Cities
+    SF = Cities["SanFrancisco"]
+    LA = Cities["LosAngeles"]
+
+    print "\nInitial city states"
+    print SF
+    print LA
+    # Infect SF, make sure LA gets a blue cube
+    print "\nInfecting SF"
+    SF.infect()
+    print SF
+    print "\nQuarantining SF"
+    SF.quarantine()
+    print SF
+    print "\nQuarantining again (shouldn't do anything)"
+    SF.quarantine()
+    print SF
+    print "\nInfecting SF. Should remove quarantine."
+    SF.infect()
+    print SF
+    print "\nInfect SF three times. Should cause outbreak into LA."
+    SF.infect()
+    SF.infect()
+    SF.infect()
+    print SF
+    print LA
+    # Roadblock and infect again (expect LA to be unaffected)
+    print "\nRoadblock SF<->LA. Note: If a connection is printed in blue, it's roadblocked."
+    SF.roadblock(LA)
+    print SF
+    print LA
+    print "\nInfect SF. Should not affect LA."
+    SF.infect()
+    print SF 
+    print LA
+    # Infect LA three times (with yellow)
+    print "\nInfect LA three times. Should see yellow increase."
+    LA.infectWithCount(3)
+    print LA
+    print "\nPrinting rest of cities connected to SF"
+    print Cities["Tokyo"]
+    print Cities["Manila"]
+    print Cities["Chicago"]
+
+# Uncomment to run tests
+# testFunctions()
+
+
