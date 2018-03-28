@@ -1,5 +1,3 @@
-import sys
-
 # some stuff to help with printing in pretty colours
 class bcolors:
     HEADER = '\033[95m'
@@ -54,7 +52,7 @@ class City:
 
     # Equality check
     def __eq__(self, other):
-        return self.name == other.name
+        return self.name.lower() == other.name.lower()
 
     # Add a connected city
     def addConnection(self, city):
@@ -78,7 +76,7 @@ class City:
         self.__roadBlocks[index] = True
         city.roadblock(self)
         
-    def infectWithCountAndColor(self, number, color):
+    def infectWithColor(self, color, number=1):
         if color.upper() not in City.COLORS:
             print bcolors.FAIL + "Invalid Colour Given" + bcolors.ENDC
             return
@@ -97,27 +95,26 @@ class City:
                     string = bcolors.OKGREEN + "Outbreak prevented in "
                     string += self.__connections[i].name + ": Roadblock present." + bcolors.ENDC
                     continue
-                self.__connections[i].infectWithCountAndColor(difference, color)
+                self.__connections[i].infectWithColor(color, difference)
             return
         
 
     # If no colour given, infect with own colour
-    def infectWithCount(self, number):
-        self.infectWithCountAndColor(number, self.color)
+    def infect(self, number=1):
+        self.infectWithColor(self.color, number)
 
-    # If no arguments given, infect self with own colour and 1 cube
-    def infect(self):
-        self.infectWithCount(1)
-
-def setup(filename):
-    print "Importing cities from " + sys.argv[1]
+def setup(filename, fucked_color):
+    print "Importing cities from " + filename
+    Cities = {}
     with open(filename, "r") as file:
         for line in file:
             words = line.split()
             if (len(words) > 2):
-                name = words[0]
+                name = words[0].lower()
                 colour = words[1]
-                city = City(name, colour, [])
+                if colour == fucked_color:
+                    colour = "fucked"
+                city = City(words[0], colour, [])
                 if name in Cities:
                     city = Cities[name]
                 else:
@@ -125,21 +122,18 @@ def setup(filename):
                 city.color = colour.upper()
                 for connection_name in words[2:]:
                     connection = City(connection_name, "FUCKED", [])
-                    if connection_name in Cities:
-                        connection = Cities[connection_name]
+                    if connection_name.lower() in Cities:
+                        connection = Cities[connection_name.lower()]
                     else:
-                        Cities[connection_name] = connection
+                        Cities[connection_name.lower()] = connection
                     connection.addConnection(city)
                     city.addConnection(connection)
+    return Cities
 
-
-Cities = {}
-
-if len(sys.argv) > 1:
-    setup(sys.argv[1])
-    
-print "List of Cities"
-print sorted(Cities.keys())
+#  Uncomment this section to load cities from file
+# Cities = setup("city_list.txt")
+# print "List of Cities"
+# print sorted(Cities.keys())
 
 # basic tests
 def testFunctions():
@@ -180,7 +174,7 @@ def testFunctions():
     print LA
     # Infect LA three times (with yellow)
     print "\nInfect LA three times. Should see yellow increase."
-    LA.infectWithCount(3)
+    LA.infect(3)
     print LA
     print "\nPrinting rest of cities connected to SF"
     print Cities["Tokyo"]

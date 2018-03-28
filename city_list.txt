@@ -1,9 +1,9 @@
-SanFrancisco fucked Tokyo Manila LosAngeles Chicago
-Chicago fucked Atlanta Montreal MexicoCity LosAngeles
-Montreal fucked NewYork Washington Chicago
-Atlanta fucked Chicago Washington Miami
-Washington fucked NewYork Montreal Atlanta Miami
-NewYork fucked Montreal Washington London Madrid
+SanFrancisco blue Tokyo Manila LosAngeles Chicago
+Chicago blue Atlanta Montreal MexicoCity LosAngeles
+Montreal blue NewYork Washington Chicago
+Atlanta blue Chicago Washington Miami
+Washington blue NewYork Montreal Atlanta Miami
+NewYork blue Montreal Washington London Madrid
 
 LosAngeles yellow SanFrancisco Chicago MexicoCity Sydney
 MexicoCity yellow Miami Chicago LosAngeles Bogota Lima
@@ -14,11 +14,11 @@ SaoPaulo yellow Bogota BuenosAires Madrid Lagos
 BuenosAires yellow SaoPaulo Bogota Lima Santiago
 Santiago yellow Lima BuenosAires
 
-London fucked NewYork Madrid Paris Essen
-Madrid fucked London NewYork SaoPaulo Algiers Paris
-Paris fucked Essen Milan Algiers Madrid London
-Milan fucked Essen Paris Istanbul
-Essen fucked London Paris Milan StPetersburg
+London blue NewYork Madrid Paris Essen
+Madrid blue London NewYork SaoPaulo Algiers Paris
+Paris blue Essen Milan Algiers Madrid London
+Milan blue Essen Paris Istanbul
+Essen blue London Paris Milan StPetersburg
 
 Algiers black Madrid Paris Istanbul Cairo
 Cairo black Algiers Istanbul Baghdad Riyadh Khartoum
