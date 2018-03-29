@@ -114,7 +114,7 @@ class City:
         self.__infectionCount[index] -= number
 
     def cure(self, number=1):
-        cureWithColor(number, self.color)
+        cureWithColor(self.color, number)
 
 def setup(filename, fucked_color):
     print "Importing cities from " + filename
