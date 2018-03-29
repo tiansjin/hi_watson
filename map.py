@@ -50,7 +50,7 @@ class Map:
         print self.Cities[city]
 
 # Covers potential actions: 
-#   infect, infect with count (for epidemics and setup), quarantine, and roadblock
+#   infect, infect with count (for epidemics and setup), cure, cure with count, quarantine, and roadblock
 pandemic_map = Map("city_list.txt", "blue")
 pandemic_map.quarantine("sanfrancisco")
 pandemic_map.quarantine("SanFrancisco")
