@@ -28,6 +28,7 @@ class Map:
             city = city.lower()
             if city not in self.Cities:
                 print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
+                return
             self.Cities[city].infect()
 
     # For use in epidemics and setup, one city only
@@ -35,18 +36,21 @@ class Map:
         city = city.lower()
         if city not in self.Cities:
             print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
+            return
         self.Cities[city].infect(count)
 
     def cure(self, city, color, count=1):
         city = city.lower()
         if city not in self.Cities:
             print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
+            return
         self.Cities[city].cureWithColor(color, count)
 
     def printCity(self, city):
         city = city.lower()
         if city not in self.Cities:
             print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
+            return
         print self.Cities[city]
 
 # Covers potential actions: 
