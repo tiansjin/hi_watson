@@ -37,6 +37,12 @@ class Map:
             print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
         self.Cities[city].infect(count)
 
+    def cure(self, city, color, count=1):
+        city = city.lower()
+        if city not in self.Cities:
+            print cities.bcolors.FAIL + "INVALID CITY NAME " + city + cities.bcolors.ENDC
+        self.Cities[city].cureWithColor(color, count)
+
     def printCity(self, city):
         city = city.lower()
         if city not in self.Cities:
@@ -54,5 +60,7 @@ pandemic_map.infect("sanfrancisco", "sanfrancisco", "sanfrancisco")
 pandemic_map.infectWithCount("losangeles", 3)
 pandemic_map.roadblock("sanfrancisco","tokyo")
 pandemic_map.printCity("tokyo")
-pandemic_map.infect("sanfrancisco")
-pandemic_map.printCity("tokyo")
+pandemic_map.cure("sanfrancisco", "fucked")
+pandemic_map.printCity("SanFrancisco")
+pandemic_map.cure("sanfrancisco", "fucked",3)
+pandemic_map.printCity("SanFrancisco")

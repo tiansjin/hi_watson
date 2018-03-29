@@ -76,7 +76,7 @@ class City:
         self.__roadBlocks[index] = True
         city.roadblock(self)
         
-    def infectWithColor(self, color, number=1):
+    def infectWithColor(self, color, number):
         if color.upper() not in City.COLORS:
             print bcolors.FAIL + "Invalid Colour Given" + bcolors.ENDC
             return
@@ -102,6 +102,19 @@ class City:
     # If no colour given, infect with own colour
     def infect(self, number=1):
         self.infectWithColor(self.color, number)
+
+    def cureWithColor(self, color, number):
+        if color.upper() not in City.COLORS:
+            print bcolors.FAIL + "Invalid Colour Given" + bcolors.ENDC
+            return
+        index = City.COLORS.index(color.upper())
+        if self.__infectionCount[index] < number:
+            print bcolors.WARNING + "Trying to cure more cubes than present. Setting to 0." + bcolors.ENDC
+            number = self.__infectionCount[index]
+        self.__infectionCount[index] -= number
+
+    def cure(self, number=1):
+        cureWithColor(number, self.color)
 
 def setup(filename, fucked_color):
     print "Importing cities from " + filename
